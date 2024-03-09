@@ -1,0 +1,10 @@
+spring:
+  application:
+    name: hexagonal-architecture
+  profile:
+    active: ${ACTIVE_PROFILE:local}
+  datasource:
+    driverClassName: org.postgresql.Driver
+    url: ${DB_URL:jdbc:postgresql://localhost:15432/postgres}
+    username: ${DB_POSTGRES_USER:postgres}
+    password: ${DB_POSTGRES_PASS:postgres}
