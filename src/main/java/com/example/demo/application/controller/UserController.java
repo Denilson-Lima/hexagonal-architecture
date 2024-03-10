@@ -2,8 +2,10 @@ package com.example.demo.application.controller;
 
 import com.example.demo.application.dto.request.UserPatchRequest;
 import com.example.demo.application.dto.request.UserRequest;
+import com.example.demo.application.dto.response.UserResponse;
 import com.example.demo.domain.model.User;
 import com.example.demo.domain.usecase.UserUseCase;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -36,10 +38,10 @@ public class UserController {
     }
 
     @PostMapping
-    public ResponseEntity<Long> createUser(@RequestBody UserRequest userRequest) {
+    public ResponseEntity<UserResponse> createUser(@RequestBody @Valid UserRequest userRequest) {
         var savedUser = userUseCase.save(UserRequest.fromDto(userRequest));
         var location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(savedUser).toUri();
-        return ResponseEntity.created(location).body(savedUser);
+        return ResponseEntity.created(location).body(new UserResponse(savedUser));
     }
 
     @PatchMapping(path = "/{id}")
