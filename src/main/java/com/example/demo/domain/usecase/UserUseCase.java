@@ -23,7 +23,7 @@ public class UserUseCase {
     }
 
     public Long save(User user) {
-        var userExists = findUserByCpfOrEmail(user.getCpf(), user.getEmail());
+        var userExists = this.findUserByCpfOrEmail(user.getCpf(), user.getEmail());
 
         if(Objects.nonNull(userExists)) {
             throw new UserAlreadyExistsException("User Already Exists");
