@@ -1,5 +1,6 @@
 package com.example.demo.application.dto.request;
 
+import com.example.demo.application.validation.UserRequestValidation;
 import com.example.demo.domain.model.User;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
@@ -8,6 +9,7 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
 @Getter
+@UserRequestValidation
 public class UserRequest {
 
     private static final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
